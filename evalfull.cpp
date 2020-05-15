@@ -21,13 +21,20 @@ TokenType identify(char *t);
 
 bool balanced(char *expression[], int numTokens) {
 
-    stack<char *> s;  // USE s TO SOLVE THE PROBLEM - it is an STL
-                      // (Standard Template Library) structure with
-                      // all of the same operations as the stack from
-                      // Step 2 of this lab, but it won't get full
-                      // and it can store any type - <char *> here
-
-    return false; // REPLACE THIS return WITH ACTUAL IMPLEMENTATION
+    stack<char *> s;
+    int counter = 0;
+    while (counter < numTokens) {
+        if (identify(expression[counter]) == LEFT) {
+            s.push(expression[counter]);
+        }else if (identify(expression[counter]) == RIGHT) {
+            s.pop();
+        }
+        counter++;
+    }
+    if (s.empty() == true) {
+        return true;
+    }
+    return false;
 }
 
 // DO NOT CHANGE ANYTHING BELOW - BUT DO READ IT
